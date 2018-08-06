@@ -70,27 +70,23 @@ function clickCard(){
             openedCard='';
         }
         
-        let star1 = $('.stars li').children('i').last();
-        let star2 = star1.prev();
-        let star3 = star2.prev();
 
         if(numMove > 8){
-            star1.switchClass('fa-star','fa-star-o',0);
+            $('.stars li:nth-child(3)').children('i').switchClass('fa-star','fa-star-o',0);
         } 
         
-        if (matchedCards > 16){
-            star2.switchClass('fa-star','fa-star-o',0);
+        if (numMove > 16){
+            $('.stars li:nth-child(2)').children('i').switchClass('fa-star','fa-star-o',0);
         }
         
-        if (matchedCards > 32){
-            star3.switchClass('fa-star','fa-star-o',0);
+        if (numMove > 32){
+            $('.stars li:nth-child(1)').children('i').switchClass('fa-star','fa-star-o',0);
         }        
         
         $('.moves').text(numMove);
 
     });
 
-    
 }
 
 
