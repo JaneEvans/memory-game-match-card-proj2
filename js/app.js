@@ -63,8 +63,8 @@ function clickCard(){
                 clickedCard.switchClass('open show','match');
             }
             else{
-                openedCard.switchClass('open show','',800);
-                clickedCard.switchClass('open show','',800);
+                openedCard.switchClass('open show','',600);
+                clickedCard.switchClass('open show','',600);
             }
             
             openedCard='';
@@ -94,8 +94,11 @@ function clickCard(){
 function initializeDeck(){
     // display all of the cards on the page
     $('.card').switchClass('match','open show');
-    star1 = $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
+
+    // initialize stars and clean out moves
+    $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
     $('.moves').text(0);
+
     // after 1s close all cards
     setTimeout(function(){
         $('.card').removeClass('open show match');
