@@ -65,10 +65,15 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
+.deck .card:hover {
+    opacity: .5;
+}
+
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
+    opacity: 1;
 }
 
 .deck .card.show {
@@ -79,6 +84,7 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    opacity: 1;
 }
 
 /*
