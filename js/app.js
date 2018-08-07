@@ -85,13 +85,22 @@ function clickCard(){
         
         $('.moves').text(numMove);
 
-    });
+        if(matchedCards===1){
+            $('#darkOverlay').show(500);
+                // $("body").css("overflow", "hidden");                
+        }
+
+    }); 
 
 }
 
 
 // Initialize card deck function
 function initializeDeck(){
+
+    $('#darkOverlay').hide();
+    // $("body").css("overflow", "visible");
+
     // display all of the cards on the page
     $('.card').switchClass('match','open show');
 
@@ -104,18 +113,27 @@ function initializeDeck(){
         $('.card').removeClass('open show match');
         clickCard();
     },1000);
-
-    //add event listener on each card: when clicked, open the card
     
 }
 
 
 $(function() {
-    shuffleCards();
     initializeDeck();
+    shuffleCards();
+    
 });
 
 $('.restart').on('click', function(){   
-    shuffleCards();
     initializeDeck();
+    shuffleCards();
+});
+
+$('.fa-window-close').click(function(){
+    $('#darkOverlay').hide();
+    setTimeout(() => {
+        initializeDeck();
+        shuffleCards();       
+    }, 500);
+
+    // $("body").css("overflow", "auto");
 });
