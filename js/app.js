@@ -86,8 +86,7 @@ function clickCard(){
         $('.moves').text(numMove);
 
         if(matchedCards===1){
-            $('#darkOverlay').show(500);
-                // $("body").css("overflow", "hidden");                
+            $('#darkOverlay').show(500);               
         }
 
     }); 
@@ -99,7 +98,6 @@ function clickCard(){
 function initializeDeck(){
 
     $('#darkOverlay').hide();
-    // $("body").css("overflow", "visible");
 
     // display all of the cards on the page
     $('.card').switchClass('match','open show');
@@ -135,5 +133,4 @@ $('.fa-window-close').click(function(){
         shuffleCards();       
     }, 500);
 
-    // $("body").css("overflow", "auto");
 });
