@@ -85,8 +85,9 @@ function clickCard(){
         
         $('.moves').text(numMove);
 
-        if(matchedCards===8){
-            $('#darkOverlay').show(500);               
+        if(matchedCards===1){
+            $('#darkOverlay').show(500);
+                           
         }
 
     }); 
@@ -97,10 +98,8 @@ function clickCard(){
 // Initialize card deck function
 function initializeDeck(){
 
-    $('#darkOverlay').hide();
-
     // display all of the cards on the page
-    $('.card').switchClass('match','open show');
+    $('.card').switchClass('match','open show',0);
 
     // initialize stars and clean out moves
     $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
@@ -108,24 +107,27 @@ function initializeDeck(){
 
     // after 1s close all cards
     setTimeout(function(){
-        $('.card').removeClass('open show match');
+        $('.card').switchClass('open show match','');
         clickCard();
-    },1000);
+    },2000);
     
 }
 
 
+// Initialize the game web
 $(function() {
-    initializeDeck();
+    $('.card').removeClass('open show match');
     shuffleCards();
-    
+    clickCard();
 });
 
-$('.restart').on('click', function(){   
+// Add 'click' event listener on repeat logo
+$('.fa-repeat').on('click', function(){
     initializeDeck();
     shuffleCards();
 });
 
+// Add 'click' event listener on close button of results floating window
 $('.close-button').click(function(){
     $('#darkOverlay').hide();
 });
