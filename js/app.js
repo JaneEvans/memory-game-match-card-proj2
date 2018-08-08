@@ -85,7 +85,7 @@ function clickCard(){
         
         $('.moves').text(numMove);
 
-        if(matchedCards===1){
+        if(matchedCards===8){
             $('#darkOverlay').show(500);               
         }
 
@@ -126,11 +126,6 @@ $('.restart').on('click', function(){
     shuffleCards();
 });
 
-$('.fa-window-close').click(function(){
+$('.close-button').click(function(){
     $('#darkOverlay').hide();
-    setTimeout(() => {
-        initializeDeck();
-        shuffleCards();       
-    }, 500);
-
 });
