@@ -100,10 +100,9 @@ h1 {
 }
 
 .score-panel .stars {
-    margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 20px 0 0;
 }
 
 .score-panel .stars li {
@@ -115,13 +114,8 @@ h1 {
     float: right;
 }
 
-.score-panel .fa-hand-o-right {
-    margin-left:2px;
-    margin-right:8px; 
-}
-
-
 .score-panel .fa-repeat {
+    margin-left: 8px;
     cursor: pointer;
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
