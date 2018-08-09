@@ -44,7 +44,7 @@ function shuffleCards(){
 
 // Click card function
 function clickCard(){
-    let openedCard, clickedCard, numMove=0, matchedCards=0;
+    let openedCard, clickedCard, numMove=0, matchedCards=0, totalStar=$('.stars').children('li').length, numStar;
 
     $('.card').on('click',function(){
         
@@ -70,30 +70,27 @@ function clickCard(){
             openedCard='';
         }
         
-        for(let n=1;n<5;n++){
+        for(let n=1;n<=totalStar;n++){
             if (numMove > 8*n){
                 $(`.stars li:nth-child(${6-n})`).children('i').switchClass('fa-star','fa-star-o',0);
             }
         }
 
-        // if(numMove > 8){
-        //     // $('.stars li:nth-child(3)').children('i').switchClass('fa-star','fa-star-o',0);
-        //     $(`.stars li:nth-child(${i})`).children('i').switchClass('fa-star','fa-star-o',0);
-        // } 
-        
-        // if (numMove > 16){
-        //     $('.stars li:nth-child(2)').children('i').switchClass('fa-star','fa-star-o',0);
-        // }
-        
-        // if (numMove > 32){
-        //     $('.stars li:nth-child(1)').children('i').switchClass('fa-star','fa-star-o',0);
-        // }        
-        
+        numStar=Math.floor(6-(numMove/8));
+
         $('.moves').text(numMove);
 
-        if(matchedCards===1){
+        if(numMove > 40){
+            $('#darkOverlay #gameResult').text('Sorry, you lost the game :(');
             $('#darkOverlay').show('slow');
         }
+
+        if(matchedCards===8){
+            $('#darkOverlay #gameResult').text(`You won ${numStar} stars with ${numMove} moves`);
+            $('#darkOverlay').show('slow');
+        }
+
+
 
     }); 
 
@@ -125,7 +122,7 @@ function startGame(){
     // close all cards after 2s
     // add clickCard handler to each card
     setTimeout(function(){
-        $('.card').switchClass('open show match','',1500);
+        $('.card').switchClass('open show match','',2500);
         clickCard();
     },500);
     

@@ -140,7 +140,7 @@ floating window is showed.
     cursor: auto;
     display: none;
     height: 100%;
-    left: 0;
+    /* left: 0; */
     overflow-y: auto;
     position: fixed;
     top: 0;
@@ -149,17 +149,23 @@ floating window is showed.
 }
 
 
+#gameOver{
+    font-size: 35px;
+}
+
+
 /*
 Defining the floating window wrap...
 */
 #floatWindow{
+    text-align: center;
     float: middle;
     background: transparent;
     margin: 200px auto;
     width: 400px;
     z-index: 103; 
     position:relative;
-    padding:30px 140px 30px 140px;
+    padding:30px 30px 30px 30px;
 }
 
 
@@ -170,11 +176,11 @@ Adding the button for closing the window
     position: static;
     cursor: pointer;
     z-index: 1100;
-    margin:auto;
+    margin: 30px auto;
     background-color: #02ccba;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
