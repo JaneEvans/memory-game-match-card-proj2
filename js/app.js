@@ -70,24 +70,29 @@ function clickCard(){
             openedCard='';
         }
         
-
-        if(numMove > 8){
-            $('.stars li:nth-child(3)').children('i').switchClass('fa-star','fa-star-o',0);
-        } 
-        
-        if (numMove > 16){
-            $('.stars li:nth-child(2)').children('i').switchClass('fa-star','fa-star-o',0);
+        for(let n=1;n<5;n++){
+            if (numMove > 8*n){
+                $(`.stars li:nth-child(${6-n})`).children('i').switchClass('fa-star','fa-star-o',0);
+            }
         }
+
+        // if(numMove > 8){
+        //     // $('.stars li:nth-child(3)').children('i').switchClass('fa-star','fa-star-o',0);
+        //     $(`.stars li:nth-child(${i})`).children('i').switchClass('fa-star','fa-star-o',0);
+        // } 
         
-        if (numMove > 32){
-            $('.stars li:nth-child(1)').children('i').switchClass('fa-star','fa-star-o',0);
-        }        
+        // if (numMove > 16){
+        //     $('.stars li:nth-child(2)').children('i').switchClass('fa-star','fa-star-o',0);
+        // }
+        
+        // if (numMove > 32){
+        //     $('.stars li:nth-child(1)').children('i').switchClass('fa-star','fa-star-o',0);
+        // }        
         
         $('.moves').text(numMove);
 
         if(matchedCards===1){
-            $('#darkOverlay').show(500);
-                           
+            $('#darkOverlay').show('slow');
         }
 
     }); 
@@ -95,39 +100,54 @@ function clickCard(){
 }
 
 
-// Initialize card deck function
+// Initialize deck function
 function initializeDeck(){
 
-    // display all of the cards on the page
-    $('.card').switchClass('match','open show',0);
-
-    // initialize stars and clean out moves
+    // initialize score panel
     $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
     $('.moves').text(0);
 
-    // after 1s close all cards
+    // close all cards
+    $('.card').removeClass('open show match');
+
+}
+
+// Start game function
+function startGame(){
+
+    // initialize score panel
+    $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
+    $('.moves').text(0);
+
+    // open all cards
+    $('.card').switchClass('match','open show',0);
+
+    // close all cards after 2s
+    // add clickCard handler to each card
     setTimeout(function(){
-        $('.card').switchClass('open show match','');
+        $('.card').switchClass('open show match','',1500);
         clickCard();
-    },2000);
+    },500);
     
 }
 
 
 // Initialize the game web
 $(function() {
-    $('.card').removeClass('open show match');
     shuffleCards();
-    clickCard();
-});
-
-// Add 'click' event listener on repeat logo
-$('.fa-repeat').on('click', function(){
     initializeDeck();
-    shuffleCards();
 });
 
-// Add 'click' event listener on close button of results floating window
+// Start game when click on 'repeat' logo
+$('.fa-repeat').on('click', function(){
+    shuffleCards();
+    startGame();
+});
+
+// close floating window while re-initialize the game web
 $('.close-button').click(function(){
-    $('#darkOverlay').hide();
+    $('#darkOverlay').hide('slow');
+
+    shuffleCards();
+    initializeDeck();
 });
