@@ -96,7 +96,7 @@ function clickCard(){
             } else if(m>0){
                 $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) within ${m} min(s) ${s} second(s)`);
             } else {
-                $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) ${s} second(s)`);
+                $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) within ${s} second(s)`);
             }
            
 
