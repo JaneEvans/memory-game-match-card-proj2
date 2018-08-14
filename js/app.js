@@ -91,11 +91,17 @@ function clickCard(){
             let s = parseInt($('#timer').text().split(':')[2]);
 
             $('#darkOverlay #gameResult1').text(`🏆 You won ${numStar} stars 🏆`);
-            $('#darkOverlay #gameResult2').text(`It took you ${h} hour(s) ${m} min(s) ${s} second(s) with ${numMove} move(s)`);
+            if(h>0){
+                $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) within ${h} hour(s) ${m} min(s) ${s} second(s)`);
+            } else if(m>0){
+                $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) within ${m} min(s) ${s} second(s)`);
+            } else {
+                $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) ${s} second(s)`);
+            }
+           
 
             $('#darkOverlay').show('slow');
             timer.stop();
-            console.log();
         }
 
 

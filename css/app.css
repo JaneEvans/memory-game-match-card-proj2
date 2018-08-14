@@ -185,11 +185,11 @@ Defining the floating window wrap...
     text-align: center;
     float: middle;
     background: transparent;
-    margin: 200px auto;
-    width: 400px;
+    margin: 200px auto ;
+    width: 450px;
     z-index: 103; 
     position:relative;
-    padding:30px 30px 30px 30px;
+    /* padding:30px 30px 30px 30px; */
 }
 
 
