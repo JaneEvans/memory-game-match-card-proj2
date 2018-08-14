@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 let cardList = $('.card');
-let timer = new Timer();
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -105,7 +105,6 @@ function clickCard(){
 
 // Initialize deck function
 function initializeDeck(){
-
     // initialize score panel
     $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
     $('.moves').text(0);
@@ -115,10 +114,15 @@ function initializeDeck(){
 
 }
 
-// Start timer function
-function startTimer(){
+
+let timer = new Timer();
+function initializeTimer(){
     timer.stop();
     $('#timer').text(`00:00:00`);
+}
+
+// Start timer function
+function startTimer(){
     
     timer.start();
     timer.addEventListener('secondsUpdated', function () {
@@ -141,7 +145,6 @@ function startGame(){
     // add clickCard handler to each card
     
     $('.card').switchClass('open show match','',3000);
-    startTimer();
     clickCard();
     
 }
@@ -151,24 +154,32 @@ function startGame(){
 $(function() {
     shuffleCards();
     initializeDeck();
+    initializeTimer();
 });
 
 // Start game when click on 'repeat' logo
 $('.fa-repeat').on('click', function(){
     shuffleCards();
     initializeDeck();
+    initializeTimer();
+    
     setTimeout(() => {
         startGame();
     }, 0);
     
+    setTimeout(() => {
+        startTimer();
+    }, 3000);
+    
 });
 
-// close floating window while re-initialize the game web
+// close floating gameover window then re-initialize the game web
 $('.close-button').click(function(){
     $('#darkOverlay').hide('slow');
 
     shuffleCards();
     initializeDeck();
+    initializeTimer();
 });
 
 
