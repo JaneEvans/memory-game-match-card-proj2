@@ -18,7 +18,8 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 110%;
 }
 
 .container {
@@ -28,9 +29,13 @@ body {
     flex-direction: column;
 }
 
+header {
+    margin-top: 2em;
+}
+
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'Rock Salt', cursive;
+    font-size: 170%;
 }
 
 /*
