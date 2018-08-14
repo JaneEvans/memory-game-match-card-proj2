@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 let cardList = $('.card');
-
+let timer = new Timer();
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -85,9 +85,15 @@ function clickCard(){
             $('#darkOverlay').show('slow');
         }
 
-        if(matchedCards===8){
-            $('#darkOverlay #gameResult').text(`You won ${numStar} stars with ${numMove} moves`);
+        if(matchedCards===1){
+            let h = parseInt($('#timer').text().split(':')[0]);
+            let m = parseInt($('#timer').text().split(':')[1]);
+            let s = parseInt($('#timer').text().split(':')[2]);
+
+            $('#darkOverlay #gameResult').text(`You won ${numStar} stars with ${numMove} moves; it took you ${h} hour(s) ${m} min(s) ${s} second(s)`);
             $('#darkOverlay').show('slow');
+            timer.stop();
+            console.log();
         }
 
 
@@ -109,9 +115,21 @@ function initializeDeck(){
 
 }
 
+// Start timer function
+function startTimer(){
+    timer.stop();
+    $('#timer').text(`00:00:00`);
+    
+    timer.start();
+    timer.addEventListener('secondsUpdated', function () {
+        $('#timer').html(timer.getTimeValues().toString());
+    });
+
+
+}
+
 // Start game function
 function startGame(){
-
     // initialize score panel
     $('.stars li').children('i').switchClass('fa-star-o','fa-star',0);
     $('.moves').text(0);
@@ -119,12 +137,12 @@ function startGame(){
     // open all cards
     $('.card').switchClass('match','open show',0);
 
-    // close all cards after 2s
+    // allow 3s for player to remember cards; then close them
     // add clickCard handler to each card
-    // setTimeout(function(){
-        $('.card').switchClass('open show match','',2500);
-        clickCard();
-    // },500);
+    
+    $('.card').switchClass('open show match','',3000);
+    startTimer();
+    clickCard();
     
 }
 
@@ -152,3 +170,5 @@ $('.close-button').click(function(){
     shuffleCards();
     initializeDeck();
 });
+
+

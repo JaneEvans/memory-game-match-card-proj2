@@ -117,7 +117,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 400px;
+    width: 550px;
     margin-bottom: 15px;
 }
 
@@ -148,6 +148,10 @@ h1 {
 .score-panel .fa-repeat:hover {
     -webkit-transform: rotate(45deg) scale(1.4);
     transform: rotate(45deg) scale(1.4);
+}
+
+#timer{
+    margin-left: 1em;
 }
 
 
