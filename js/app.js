@@ -121,10 +121,10 @@ function startGame(){
 
     // close all cards after 2s
     // add clickCard handler to each card
-    setTimeout(function(){
+    // setTimeout(function(){
         $('.card').switchClass('open show match','',2500);
         clickCard();
-    },500);
+    // },500);
     
 }
 
@@ -138,7 +138,11 @@ $(function() {
 // Start game when click on 'repeat' logo
 $('.fa-repeat').on('click', function(){
     shuffleCards();
-    startGame();
+    initializeDeck();
+    setTimeout(() => {
+        startGame();
+    }, 0);
+    
 });
 
 // close floating window while re-initialize the game web
