@@ -81,7 +81,7 @@ function clickCard(){
         $('.moves').text(numMove);
 
         if(numMove > 40){
-            $('#darkOverlay #gameResult').text('Sorry, you lost the game :(');
+            $('#darkOverlay #gameResult1').text('Sorry, you lost the game 😿');
             $('#darkOverlay').show('slow');
         }
 
@@ -90,7 +90,9 @@ function clickCard(){
             let m = parseInt($('#timer').text().split(':')[1]);
             let s = parseInt($('#timer').text().split(':')[2]);
 
-            $('#darkOverlay #gameResult').text(`You won ${numStar} stars with ${numMove} moves; it took you ${h} hour(s) ${m} min(s) ${s} second(s)`);
+            $('#darkOverlay #gameResult1').text(`🏆 You won ${numStar} stars 🏆`);
+            $('#darkOverlay #gameResult2').text(`It took you ${h} hour(s) ${m} min(s) ${s} second(s) with ${numMove} move(s)`);
+
             $('#darkOverlay').show('slow');
             timer.stop();
             console.log();
