@@ -85,7 +85,7 @@ function clickCard(){
             $('#darkOverlay').show('slow');
         }
 
-        if(matchedCards===1){
+        if(matchedCards===8){
             let h = parseInt($('#timer').text().split(':')[0]);
             let m = parseInt($('#timer').text().split(':')[1]);
             let s = parseInt($('#timer').text().split(':')[2]);
