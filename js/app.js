@@ -31,6 +31,22 @@ function shuffleCards(){
     $('.deck').empty().append(cardList);
 }
 
+// Initialize timer function
+let timer = new Timer();
+function initializeTimer(){
+    timer.stop();
+    $('#timer').text(`00:00:00`);
+}
+
+// Start timer function
+function startTimer(){
+    
+    timer.start();
+    timer.addEventListener('secondsUpdated', function () {
+        $('#timer').html(timer.getTimeValues().toString());
+    });
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -53,12 +69,12 @@ function clickCard(){
         if(!openedCard){
             openedCard=clickedCard;
         }
-        else if((openedCard.attr('id')!==clickedCard.attr('id'))){
+        else if((openedCard.attr('id') !== clickedCard.attr('id'))){
             
-            numMove+=1;
+            numMove += 1;
 
             if(openedCard.children('i').attr('class') === clickedCard.children('i').attr('class')){
-                matchedCards+=1;
+                matchedCards += 1;
                 openedCard.switchClass('open show','match');
                 clickedCard.switchClass('open show','match');
             }
@@ -67,18 +83,18 @@ function clickCard(){
                 clickedCard.switchClass('open show','',600);
             }
             
-            openedCard='';
+            openedCard = '';
         }
-        
+
+        $('.moves').text(numMove);
+
         for(let n=1;n<=totalStar;n++){
             if (numMove > 8*n){
                 $(`.stars li:nth-child(${6-n})`).children('i').switchClass('fa-star','fa-star-o',0);
             }
         }
 
-        numStar=Math.floor(6-(numMove/8));
-
-        $('.moves').text(numMove);
+        numStar = Math.floor(6-(numMove/8));
 
         if(numMove > 40){
             $('#darkOverlay #gameResult1').text('Sorry, you lost the game 😿');
@@ -86,6 +102,9 @@ function clickCard(){
         }
 
         if(matchedCards===8){
+
+            timer.stop();
+
             let h = parseInt($('#timer').text().split(':')[0]);
             let m = parseInt($('#timer').text().split(':')[1]);
             let s = parseInt($('#timer').text().split(':')[2]);
@@ -98,18 +117,12 @@ function clickCard(){
             } else {
                 $('#darkOverlay #gameResult2').text(`You took ${numMove} move(s) within ${s} second(s)`);
             }
-           
 
             $('#darkOverlay').show('slow');
-            timer.stop();
+
         }
-
-
-
     }); 
-
 }
-
 
 // Initialize deck function
 function initializeDeck(){
@@ -122,24 +135,6 @@ function initializeDeck(){
 
 }
 
-
-let timer = new Timer();
-function initializeTimer(){
-    timer.stop();
-    $('#timer').text(`00:00:00`);
-}
-
-// Start timer function
-function startTimer(){
-    
-    timer.start();
-    timer.addEventListener('secondsUpdated', function () {
-        $('#timer').html(timer.getTimeValues().toString());
-    });
-
-
-}
-
 // Start game function
 function startGame(){
     // initialize score panel
@@ -149,16 +144,14 @@ function startGame(){
     // open all cards
     $('.card').switchClass('match','open show',0);
 
-    // allow 3s for player to remember cards; then close them
-    // add clickCard handler to each card
-    
+    // allow 3s for player to remember cards; cards will fade out in 3 secounds
     $('.card').switchClass('open show match','',3000);
+
     clickCard();
     
 }
 
-
-// Initialize the game web
+// Initialize the game web when prepared
 $(function() {
     shuffleCards();
     initializeDeck();
@@ -175,13 +168,14 @@ $('.fa-repeat').on('click', function(){
         startGame();
     }, 0);
     
+    // start timer after 3 seconds because cards will need 3 seconds to fade out
     setTimeout(() => {
         startTimer();
     }, 3000);
     
 });
 
-// close floating gameover window then re-initialize the game web
+// close floating gameover window and re-initialize the game web for the next round
 $('.close-button').click(function(){
     $('#darkOverlay').hide('slow');
 
@@ -189,5 +183,7 @@ $('.close-button').click(function(){
     initializeDeck();
     initializeTimer();
 });
+
+
 
 

@@ -13,7 +13,3 @@ A flip flop match card game for all ages!
 ## Acknowledgments
 * [EasyTimer.js](https://albert-gonzalez.github.io/easytimer.js/)
 * [EmojiTerra](https://emojiterra.com/)
-
-
-
-

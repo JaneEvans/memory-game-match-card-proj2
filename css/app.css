@@ -95,17 +95,13 @@ h1 {
 }
 
 .deck .card.show {
-    /* font-size: 33px; */
     color: #ffffff;
     opacity: 1;
-
-    animation: rotated 1s;
 }
 
 .deck .card.match {
     cursor: default;
     background: #cc8502;
-    /* font-size: 33px; */
     color: #ffffff;
     opacity: 1;
 }
@@ -156,8 +152,7 @@ h1 {
 
 
 /*
-It defines the layer which will cover the site once the
-floating window is showed.
+defines the layer which will cover the site once the floating window is showed.
 */
 #darkOverlay{
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.8);
@@ -172,14 +167,13 @@ floating window is showed.
     z-index: 100; /*over everything */
 }
 
-
 #gameOver{
     font-size: 35px;
 }
 
 
 /*
-Defining the floating window wrap...
+Defining the floating window
 */
 #floatWindow{
     text-align: center;
@@ -194,7 +188,7 @@ Defining the floating window wrap...
 
 
 /*
-Adding the button for closing the window
+Adding the button for closing the floating window
 */
 .close-button{
     position: static;
@@ -211,5 +205,4 @@ Adding the button for closing the window
     font-size: 16px;
     border-radius: 8px;
 }
-
 
